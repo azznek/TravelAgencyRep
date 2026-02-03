@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
 import DestinationCard from './DestinationCard';
 
-// On garde les imports d'images car ils marchent bien pour les vignettes
+// 1. ON IMPORTE LES IMAGES (Vignettes)
 import hero2 from '../assets/hero2.png'; // Paris
 import hero1 from '../assets/hero1.png'; // Crétacé
 import hero3 from '../assets/hero3.png'; // Florence
+
+// 2. ON IMPORTE LES VIDÉOS (Depuis le même dossier assets)
+// Assure-toi d'avoir renommé les fichiers comme indiqué ci-dessus !
+import parisVideo from '../assets/paris.mp4';
+import dinoVideo from '../assets/dino.mp4';
+import florenceVideo from '../assets/florence.mp4';
 
 const destinations = [
   {
@@ -12,7 +18,7 @@ const destinations = [
     subtitle: 'Belle Époque',
     period: '1889',
     imageUrl: hero2, 
-    videoUrl: '/paris.mp4', // Nouveau nom simple
+    videoUrl: parisVideo, // On utilise la variable importée
     badge: 'Populaire',
     badgeType: 'popular' as const,
     icon: '🗼',
@@ -26,7 +32,7 @@ const destinations = [
     subtitle: 'Dinosaures',
     period: '-65M années',
     imageUrl: hero1,
-    videoUrl: '/dino.mp4', // Nouveau nom simple
+    videoUrl: dinoVideo, // On utilise la variable importée
     badge: 'Aventure',
     badgeType: 'adventure' as const,
     icon: '🦖',
@@ -40,7 +46,7 @@ const destinations = [
     subtitle: 'Renaissance',
     period: '1504',
     imageUrl: hero3,
-    videoUrl: '/florence.mp4', // Nouveau nom simple
+    videoUrl: florenceVideo, // On utilise la variable importée
     badge: 'Premium',
     badgeType: 'premium' as const,
     icon: '🎨',
@@ -54,7 +60,6 @@ const destinations = [
 const Destinations = () => {
   return (
     <section id="destinations" className="py-32 bg-slate-950 relative overflow-hidden">
-      {/* Background Ambiancé */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-400 rounded-full mix-blend-screen filter blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl animate-pulse" />
