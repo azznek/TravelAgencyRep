@@ -1,4 +1,4 @@
-aimport { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Clock, Mail, Phone, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
