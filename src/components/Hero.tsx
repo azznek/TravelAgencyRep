@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
+// IMPORT DE LA VIDÉO DU HERO
+import mainVideo from '../assets/hero-main.mp4'; 
 
 const Hero = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* 1. LA VIDÉO EN ARRIÈRE-PLAN */}
       <div className="absolute inset-0">
         <video
           autoPlay
@@ -13,15 +14,13 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          {/* Assure-toi d'avoir renommé ton fichier sur GitHub ! */}
-          <source src="/hero-main.mp4" type="video/mp4" />
+          {/* Utilisation de la variable importée */}
+          <source src={mainVideo} type="video/mp4" />
         </video>
-        {/* Overlay sombre pour lire le texte */}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-slate-950" />
       </div>
 
-      {/* 2. LE CONTENU TEXTE PAR-DESSUS */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +53,6 @@ const Hero = () => {
         </motion.button>
       </div>
 
-      {/* Indicateur de scroll */}
       <motion.div 
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
