@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Rocket } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,18 +17,15 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Destinations', href: '#destinations' },
-    { name: 'L\'Agence', href: '#about' }, // Assure-toi d'avoir un id="about" dans ton composant About
+    { name: 'L\'Agence', href: '#about' }, 
     { name: 'Concept', href: '#quiz' },
   ];
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+    <header
+      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 border-b ${
         isScrolled
-          ? 'bg-slate-950/80 backdrop-blur-md border-white/10 py-4 shadow-lg'
+          ? 'bg-slate-950/90 backdrop-blur-md border-white/10 py-4 shadow-lg'
           : 'bg-transparent border-transparent py-6'
       }`}
     >
@@ -60,7 +57,7 @@ const Header = () => {
             
             <button 
               onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-transparent border border-amber-500/50 text-amber-400 hover:bg-amber-500 hover:text-slate-950 px-6 py-2 rounded-full font-semibold transition-all duration-300"
+              className="bg-transparent border border-amber-500/50 text-amber-400 hover:bg-amber-500 hover:text-slate-950 px-6 py-2 rounded-full font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
             >
               Réserver
             </button>
@@ -68,10 +65,10 @@ const Header = () => {
 
           {/* MOBILE MENU BUTTON */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X /> : <Menu />}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
@@ -91,7 +88,7 @@ const Header = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-gray-300 hover:text-amber-400 font-medium"
+                  className="block text-gray-300 hover:text-amber-400 font-medium text-lg"
                 >
                   {link.name}
                 </a>
@@ -109,7 +106,7 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };
 
