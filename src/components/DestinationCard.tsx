@@ -9,6 +9,7 @@ interface DestinationCardProps {
   subtitle: string;
   period: string;
   imageUrl: string;
+  videoUrl?: string;
   delay: number;
   badge?: string;
   badgeType?: 'popular' | 'adventure' | 'premium';
@@ -24,6 +25,7 @@ const DestinationCard = ({
   subtitle,
   period,
   imageUrl,
+  videoUrl,
   delay,
   badge,
   badgeType = 'popular',
@@ -59,12 +61,26 @@ const DestinationCard = ({
         className="group relative bg-gray-800/50 backdrop-blur border border-gray-700/50 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300"
       >
         <div className="relative h-72 overflow-hidden">
-          <motion.div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${imageUrl})` }}
-            whileHover={{ scale: 1.12 }}
-            transition={{ duration: 0.6 }}
-          />
+          {videoUrl ? (
+            <motion.video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              whileHover={{ scale: 1.12 }}
+              transition={{ duration: 0.6 }}
+            >
+              <source src={videoUrl} type="video/mp4" />
+            </motion.video>
+          ) : (
+            <motion.div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+              whileHover={{ scale: 1.12 }}
+              transition={{ duration: 0.6 }}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
 
           <motion.div

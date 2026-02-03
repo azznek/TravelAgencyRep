@@ -14,7 +14,7 @@ const Hero = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-space-1610-large.mp4" type="video/mp4" />
+        <source src="/ique douce.mp4" type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-slate-950/60 to-slate-950" />
