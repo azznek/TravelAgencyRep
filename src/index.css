@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-slate-950 text-gray-100;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-gradient-nebula {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-purple-600;
+  }
+
+  .glass-nebula {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glow-nebula {
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.3), 0 0 80px rgba(168, 85, 247, 0.2);
+  }
+
+  .btn-nebula {
+    @apply bg-gradient-to-r from-amber-400 to-purple-600 text-white font-semibold px-8 py-4 rounded-full;
+    box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .btn-nebula:hover {
+    box-shadow: 0 15px 60px rgba(251, 191, 36, 0.5), 0 0 40px rgba(168, 85, 247, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .border-nebula {
+    border: 1px solid;
+    border-image: linear-gradient(to right, rgb(251, 191, 36), rgb(168, 85, 247)) 1;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
