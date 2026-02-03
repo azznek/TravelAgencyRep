@@ -1,57 +1,114 @@
-import { motion } from 'framer-motion';
-import { Clock, Menu } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Rocket } from 'lucide-react';
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Détection du scroll pour changer le style du header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Destinations', href: '#destinations' },
+    { name: 'L\'Agence', href: '#about' }, // Assure-toi d'avoir un id="about" dans ton composant About
+    { name: 'Concept', href: '#quiz' },
+  ];
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-amber-500/10"
+      transition={{ duration: 0.8 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        isScrolled
+          ? 'bg-slate-950/80 backdrop-blur-md border-white/10 py-4 shadow-lg'
+          : 'bg-transparent border-transparent py-6'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3 cursor-pointer"
-          >
-            <div className="relative">
-              <Clock className="w-8 h-8 text-amber-500 animate-pulse-glow" />
+        <div className="flex items-center justify-between">
+          
+          {/* LOGO */}
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="bg-amber-500 p-2 rounded-lg">
+              <Rocket className="w-5 h-5 text-slate-950" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-serif font-bold text-white tracking-wide">
-                TimeTravel
-              </span>
-              <span className="text-xs text-amber-500 font-semibold uppercase tracking-widest">
-                Agency
-              </span>
-            </div>
-          </motion.div>
+            <span className="text-2xl font-serif font-bold text-white tracking-wider">
+              TIME<span className="text-amber-500">TRAVEL</span>
+            </span>
+          </div>
 
-          <nav className="hidden lg:flex space-x-12">
-            {[
-              { label: 'Accueil', href: '#accueil' },
-              { label: 'Destinations', href: '#destinations' },
-              { label: 'Quiz', href: '#quiz' },
-              { label: 'Contact', href: '#contact' },
-            ].map((item) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                className="text-gray-300 hover:text-amber-400 transition-colors duration-300 font-medium text-sm uppercase tracking-widest relative group"
-                whileHover={{ y: -2 }}
+          {/* DESKTOP NAVIGATION */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-gray-300 hover:text-amber-400 transition-colors uppercase tracking-widest relative group"
               >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 group-hover:w-full transition-all duration-300" />
-              </motion.a>
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full" />
+              </a>
             ))}
+            
+            <button 
+              onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-transparent border border-amber-500/50 text-amber-400 hover:bg-amber-500 hover:text-slate-950 px-6 py-2 rounded-full font-semibold transition-all duration-300"
+            >
+              Réserver
+            </button>
           </nav>
 
-          <button className="lg:hidden text-amber-500 hover:text-amber-400 p-2">
-            <Menu className="w-6 h-6" />
+          {/* MOBILE MENU BUTTON */}
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
+
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-slate-950 border-b border-white/10 overflow-hidden"
+          >
+            <div className="px-4 py-4 space-y-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-gray-300 hover:text-amber-400 font-medium"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <button 
+                onClick={() => {
+                   setIsMobileMenuOpen(false);
+                   document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full bg-amber-500 text-slate-950 font-bold py-3 rounded-lg"
+              >
+                Réserver
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
