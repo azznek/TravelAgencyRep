@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 import DestinationCard from './DestinationCard';
-import hero2 from '../assets/hero2.png';
-import hero1 from '../assets/hero1.png';
-import hero3 from '../assets/hero3.png';
+
+// On garde les imports d'images car ils marchent bien pour les vignettes
+import hero2 from '../assets/hero2.png'; // Paris
+import hero1 from '../assets/hero1.png'; // Crétacé
+import hero3 from '../assets/hero3.png'; // Florence
 
 const destinations = [
   {
     title: 'Paris 1889',
     subtitle: 'Belle Époque',
     period: '1889',
-    imageUrl: hero2,
-    videoUrl: '../assets/Eiffel_Tower_Cinematic_Video_Generation.mp4',
+    imageUrl: hero2, // L'image s'affiche par défaut
+    // CORRECTION : Chemin absolu vers le dossier public (commence par /)
+    videoUrl: '/paris-video.mp4', 
     badge: 'Populaire',
     badgeType: 'popular' as const,
     icon: '🗼',
@@ -20,59 +23,62 @@ const destinations = [
       'Visite guidée de l\'Exposition Universelle de 1889',
       'Ascension exclusive de la Tour Eiffel fraîchement inaugurée',
       'Soirée dans les cabarets mythiques du Moulin Rouge',
-      'Dégustation de cuisine Belle Époque dans les grands restaurants parisiens',
-      'Rencontre avec des artistes et intellectuels de l\'époque',
+      'Dégustation de cuisine Belle Époque',
+      'Rencontre avec des artistes et intellectuels',
     ],
-    danger: 'Faible - Environnement urbain sécurisé. Nécessite une adaptation aux normes d\'hygiène et de transport de l\'époque. Surveillance médicale recommandée.',
+    danger: 'Faible - Environnement urbain sécurisé. Surveillance médicale recommandée.',
   },
   {
     title: 'Crétacé -65M',
     subtitle: 'Dinosaures',
     period: '-65M années',
-    imageUrl: hero1,
-    videoUrl: '../assets/Vidéo_de_voyage_Crétacé_majestueux.mp4',
+    imageUrl: hero1, // L'image s'affiche par défaut
+    // CORRECTION : Chemin absolu vers le dossier public
+    videoUrl: '/dino-video.mp4',
     badge: 'Aventure',
     badgeType: 'adventure' as const,
     icon: '🦖',
     price: '25 000 €',
     duration: '7 jours / 6 nuits',
     activities: [
-      'Safari d\'observation des dinosaures herbivores (Brachiosaures, Tricératops)',
-      'Exploration guidée des forêts préhistoriques primitives',
-      'Découverte des écosystèmes marins du Mésozoïque',
-      'Observation nocturne sécurisée depuis un camp fortifié',
-      'Documentation scientifique avec biologistes experts',
+      'Safari d\'observation des dinosaures herbivores',
+      'Exploration guidée des forêts préhistoriques',
+      'Découverte des écosystèmes marins',
+      'Observation nocturne sécurisée',
+      'Documentation scientifique avec biologistes',
     ],
-    danger: 'Élevé - Présence de prédateurs apex (T-Rex, Vélociraptors). Équipement de protection obligatoire. Atmosphère riche en oxygène nécessitant acclimatation. Formation de survie requise.',
+    danger: 'Élevé - Présence de prédateurs apex. Protection obligatoire.',
   },
   {
     title: 'Florence 1504',
     subtitle: 'Renaissance',
     period: '1504',
-    imageUrl: hero3,
-    videoUrl: '../assets/Florence_Travel_Video_Generation.mp4',
+    imageUrl: hero3, // L'image s'affiche par défaut
+    // CORRECTION : Chemin absolu vers le dossier public
+    videoUrl: '/florence-video.mp4',
     badge: 'Premium',
     badgeType: 'premium' as const,
     icon: '🎨',
     price: '18 000 €',
     duration: '7 jours / 6 nuits',
     activities: [
-      'Visite privée de l\'atelier de Léonard de Vinci et Michel-Ange',
-      'Observation de la création du David de Michel-Ange',
-      'Dégustation de vins toscans dans les villas des Médicis',
-      'Cours de peinture Renaissance avec maîtres de l\'époque',
-      'Dîners aristocratiques dans les palais florentins',
+      'Visite de l\'atelier de Léonard de Vinci',
+      'Observation du David de Michel-Ange',
+      'Dégustation de vins toscans',
+      'Cours de peinture Renaissance',
+      'Dîners aristocratiques',
     ],
-    danger: 'Modéré - Contexte historique de conflits politiques. Épidémies sporadiques nécessitant vaccinations préventives. Environnement urbain médiéval exigeant vigilance.',
+    danger: 'Modéré - Contexte de conflits politiques. Vigilance requise.',
   },
 ];
 
 const Destinations = () => {
   return (
     <section id="destinations" className="py-32 bg-slate-950 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-400 rounded-full mix-blend-screen filter blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl" />
+      {/* Background Ambiancé */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-400 rounded-full mix-blend-screen filter blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl animate-pulse" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -83,14 +89,9 @@ const Destinations = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-5xl sm:text-6xl font-bold text-white mb-6"
-          >
-            NOS <span className="text-gradient-nebula">DESTINATIONS</span>
-          </motion.h2>
+          <h2 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+            NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-purple-600">DESTINATIONS</span>
+          </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Trois univers extraordinaires où le temps se suspend
           </p>
