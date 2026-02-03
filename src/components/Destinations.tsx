@@ -11,64 +11,43 @@ const destinations = [
     title: 'Paris 1889',
     subtitle: 'Belle Époque',
     period: '1889',
-    imageUrl: hero2, // L'image s'affiche par défaut
-    // CORRECTION : Chemin absolu vers le dossier public (commence par /)
-    videoUrl: '/paris-video.mp4', 
+    imageUrl: hero2, 
+    videoUrl: '/paris.mp4', // Nouveau nom simple
     badge: 'Populaire',
     badgeType: 'popular' as const,
     icon: '🗼',
     price: '15 000 €',
     duration: '7 jours / 6 nuits',
-    activities: [
-      'Visite guidée de l\'Exposition Universelle de 1889',
-      'Ascension exclusive de la Tour Eiffel fraîchement inaugurée',
-      'Soirée dans les cabarets mythiques du Moulin Rouge',
-      'Dégustation de cuisine Belle Époque',
-      'Rencontre avec des artistes et intellectuels',
-    ],
-    danger: 'Faible - Environnement urbain sécurisé. Surveillance médicale recommandée.',
+    activities: ['Exposition Universelle', 'Tour Eiffel', 'Moulin Rouge'],
+    danger: 'Faible',
   },
   {
     title: 'Crétacé -65M',
     subtitle: 'Dinosaures',
     period: '-65M années',
-    imageUrl: hero1, // L'image s'affiche par défaut
-    // CORRECTION : Chemin absolu vers le dossier public
-    videoUrl: '/dino-video.mp4',
+    imageUrl: hero1,
+    videoUrl: '/dino.mp4', // Nouveau nom simple
     badge: 'Aventure',
     badgeType: 'adventure' as const,
     icon: '🦖',
     price: '25 000 €',
     duration: '7 jours / 6 nuits',
-    activities: [
-      'Safari d\'observation des dinosaures herbivores',
-      'Exploration guidée des forêts préhistoriques',
-      'Découverte des écosystèmes marins',
-      'Observation nocturne sécurisée',
-      'Documentation scientifique avec biologistes',
-    ],
-    danger: 'Élevé - Présence de prédateurs apex. Protection obligatoire.',
+    activities: ['Safari T-Rex', 'Forêts primitives', 'Biologie'],
+    danger: 'Élevé',
   },
   {
     title: 'Florence 1504',
     subtitle: 'Renaissance',
     period: '1504',
-    imageUrl: hero3, // L'image s'affiche par défaut
-    // CORRECTION : Chemin absolu vers le dossier public
-    videoUrl: '/florence-video.mp4',
+    imageUrl: hero3,
+    videoUrl: '/florence.mp4', // Nouveau nom simple
     badge: 'Premium',
     badgeType: 'premium' as const,
     icon: '🎨',
     price: '18 000 €',
     duration: '7 jours / 6 nuits',
-    activities: [
-      'Visite de l\'atelier de Léonard de Vinci',
-      'Observation du David de Michel-Ange',
-      'Dégustation de vins toscans',
-      'Cours de peinture Renaissance',
-      'Dîners aristocratiques',
-    ],
-    danger: 'Modéré - Contexte de conflits politiques. Vigilance requise.',
+    activities: ['Léonard de Vinci', 'Michel-Ange', 'Vins Toscans'],
+    danger: 'Modéré',
   },
 ];
 
