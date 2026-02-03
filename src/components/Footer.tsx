@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+aimport { motion } from 'framer-motion';
 import { Clock, Mail, Phone, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
@@ -132,7 +132,7 @@ const Footer = () => {
             className="pt-6 border-t border-white/10 text-center"
           >
             <p className="text-gradient-nebula text-sm font-semibold">
-              Projet Étudiant M1/M2 • TimeTravel Agency
+              Kenza DAHMANI • TimeTravel Agency
             </p>
           </motion.div>
         </motion.div>
